@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 98e750b35edfb37428555b51345b0698
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Pine Tree
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6817eb58f9e42654b85340327b464961, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

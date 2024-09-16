@@ -38,12 +38,16 @@ public class LevelNetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newplayer)
     {
         Debug.Log("entro al room: " + newplayer.NickName);
-        UIManager.Instance.addPrivateText("entro al room: " + newplayer.NickName);
+        UIManager.Instance.addPrivateText(newplayer.NickName + " entered the room");
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 4)
+        {
+            UIManager.Instance.StartTimer = true;
+        }
     }
 
     public override  void OnPlayerLeftRoom(Player otherplayer)
     {
         Debug.Log("salio: " + otherplayer.NickName);
-        UIManager.Instance.addPrivateText("salio: " + otherplayer.NickName);
+        UIManager.Instance.addPrivateText(otherplayer.NickName + " left the room");
     }
 }

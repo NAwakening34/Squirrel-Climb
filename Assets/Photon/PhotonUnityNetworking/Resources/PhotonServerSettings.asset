@@ -43,6 +43,9 @@ MonoBehaviour:
   - FirstTimer
   - Timer
   - UpdateChat
+  - SpawnSegment
+  - SetUp
+  - returnValue
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
