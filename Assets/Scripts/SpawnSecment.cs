@@ -49,5 +49,9 @@ public class SpawnSecment : MonoBehaviour
         GameObject newsegment = Instantiate(m_segments[m_segmentID]);
         newsegment.transform.position = m_spawnpos.position;
         m_segmentID++;
+        if (m_segmentID == m_segments.Length)
+        {
+            m_segmentID = 0;
+        }
     }
 }

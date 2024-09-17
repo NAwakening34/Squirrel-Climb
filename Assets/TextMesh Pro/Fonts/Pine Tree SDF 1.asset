@@ -58,11 +58,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Pine Tree SDF
+  m_Name: Pine Tree SDF 1
   m_EditorClassIdentifier: 
-  hashCode: 1102745509
+  hashCode: -1700982476
   material: {fileID: 6747064418693225201}
-  materialHashCode: 1105621861
+  materialHashCode: -475256428
   m_Version: 1.1.0
   m_SourceFontFileGUID: 98e750b35edfb37428555b51345b0698
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 98e750b35edfb37428555b51345b0698, type: 3}
@@ -2740,7 +2740,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.15
+    - _OutlineWidth: 0.275
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
