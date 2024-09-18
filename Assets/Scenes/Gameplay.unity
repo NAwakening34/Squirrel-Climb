@@ -8083,7 +8083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timer: {fileID: 2000351085}
   m_chat: {fileID: 443140409}
-  towermanager: {fileID: 1954533923}
 --- !u!4 &1280028252
 Transform:
   m_ObjectHideFlags: 0
@@ -11443,37 +11442,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1875997874
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1875997875}
-  m_Layer: 0
-  m_Name: TSpos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1875997875
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875997874}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1954533925}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881922800
 GameObject:
   m_ObjectHideFlags: 0
@@ -11853,81 +11821,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1954533923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1954533925}
-  - component: {fileID: 1954533924}
-  - component: {fileID: 1954533926}
-  m_Layer: 0
-  m_Name: TowerSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1954533924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954533923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755472e0bfbe8fd4fa2e57f34d776103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_segments:
-  - {fileID: 5649120487522450306, guid: 5c38ba5fd9ef01e4d99b47294ec81a2c, type: 3}
-  - {fileID: 7720044127253875308, guid: e870f707437ff634cae34458374f178d, type: 3}
-  - {fileID: 4077305965539754284, guid: f62dd4c01d04751409583dc4658202a9, type: 3}
-  - {fileID: 7037600522644524431, guid: a78705f6ab49318438ef40d12282bc8d, type: 3}
-  - {fileID: 6424765115035396652, guid: 7e8e2dccaa18494469ad8c7f21a856f3, type: 3}
-  m_spawnpos: {fileID: 1875997875}
---- !u!4 &1954533925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954533923}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1875997875}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954533926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954533923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1976111561
 GameObject:
   m_ObjectHideFlags: 0
@@ -12817,6 +12710,5 @@ SceneRoots:
   - {fileID: 368492994}
   - {fileID: 286584729}
   - {fileID: 1881922802}
-  - {fileID: 1954533925}
   - {fileID: 1280028252}
   - {fileID: 736047633}

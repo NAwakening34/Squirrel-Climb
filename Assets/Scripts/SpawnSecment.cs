@@ -29,7 +29,7 @@ public class SpawnSecment : MonoBehaviour
     void Start()
     {
         m_pv= GetComponent<PhotonView>();
-        InvokeRepeating("SpawnSegment", 32, 65);
+        InvokeRepeating("SpawnSegment", 33, 66);
     }
 
     // Update is called once per frame
@@ -46,8 +46,8 @@ public class SpawnSecment : MonoBehaviour
     void SpawnSegment()
     {
         //m_pv.RPC("returnValue", RpcTarget.AllBuffered);
-        GameObject newsegment = Instantiate(m_segments[m_segmentID]);
-        newsegment.transform.position = m_spawnpos.position;
+        //m_segmentID = Random.Range(0, m_segments.Length);
+        Instantiate(m_segments[m_segmentID], m_spawnpos);
         m_segmentID++;
         if (m_segmentID == m_segments.Length)
         {

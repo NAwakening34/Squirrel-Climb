@@ -11,9 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_Timer;
     [SerializeField] TextMeshProUGUI m_chat;
     float m_timer = 3;
-    bool startTimer, canMove;
     [SerializeField]
-    GameObject towermanager;
+    bool startTimer, canMove;
     PhotonView m_pv;
 
     public bool CanMove { get => canMove; set => canMove = value; }
@@ -71,7 +70,10 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     void SetUp()
     {
-        towermanager.SetActive(true);
+        if (m_pv.IsMine)
+        {
+            PhotonNetwork.Instantiate("TowerSpawner", transform.position, Quaternion.identity);
+        }
         CanMove = true;
         StartTimer = false;
         m_Timer.text = null;
