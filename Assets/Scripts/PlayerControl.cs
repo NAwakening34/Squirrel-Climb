@@ -43,18 +43,25 @@ public class PlayerControl: MonoBehaviour
             m_myanim.SetInteger("Vel", (int)m_hor);
             m_myanim.SetBool("Floor", m_suelo);
             m_myanim.SetBool("Death", m_death);
-            if (UIManager.Instance.CanMove && !m_death)
+            if (!m_death)
             {
-                m_hor = Input.GetAxisRaw("Horizontal");
-                m_rb2D.velocity = new Vector2(m_hor * m_speed, m_rb2D.velocity.y);
-            }
-            if (m_hor < 0)
-            {
-                m_spriteRenderer.flipX= true;
-            }
-            else if (m_hor > 0)
-            {
-                m_spriteRenderer.flipX= false;
+                if (UIManager.Instance.CanMove && !m_death)
+                {
+                    m_hor = Input.GetAxisRaw("Horizontal");
+                    m_rb2D.velocity = new Vector2(m_hor * m_speed, m_rb2D.velocity.y);
+                }
+                if (m_hor < 0)
+                {
+                    m_spriteRenderer.flipX = true;
+                }
+                else if (m_hor > 0)
+                {
+                    m_spriteRenderer.flipX = false;
+                }
+                if (UIManager.Instance.Endgame)
+                {
+                    UIManager.Instance.Winner(m_pv.Owner.NickName);
+                }
             }
         }
         if (transform.position.y < -10)
@@ -78,6 +85,7 @@ public class PlayerControl: MonoBehaviour
             m_rb2D.velocity = Vector3.zero;
             m_rb2D.AddForce(Vector3.up * (m_force * 1.5f), ForceMode2D.Impulse);
             UIManager.Instance.addText(m_pv.Owner.NickName + "died");
+            UIManager.Instance.PlayerDied();
         }
     }
 

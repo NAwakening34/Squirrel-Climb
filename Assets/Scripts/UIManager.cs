@@ -8,15 +8,18 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] TextMeshProUGUI m_Timer;
-    [SerializeField] TextMeshProUGUI m_chat;
+    [SerializeField] 
+    TextMeshProUGUI m_Timer, m_chat, m_winnertext; 
     float m_timer = 3;
     [SerializeField]
-    bool startTimer, canMove;
+    bool startTimer, canMove, m_endgame;
+    [SerializeField]
+    int m_players, m_deathplayers;
     PhotonView m_pv;
 
     public bool CanMove { get => canMove; set => canMove = value; }
     public bool StartTimer { get => startTimer; set => startTimer = value; }
+    public bool Endgame { get => m_endgame; set => m_endgame = value; }
 
     private void Awake()
     {
@@ -67,6 +70,20 @@ public class UIManager : MonoBehaviour
         Invoke("removeText", 2f);
     }
 
+    public void PlayerDied()
+    {
+        m_pv.RPC("UpdateDeaths", RpcTarget.All);
+        if (m_deathplayers == m_players-1)
+        {
+            m_pv.RPC("EndGame", RpcTarget.All);
+        }
+    }
+
+    public void Winner(string nickname)
+    {
+        m_pv.RPC("ShowWinner", RpcTarget.All, nickname);
+    }
+
     [PunRPC]
     void SetUp()
     {
@@ -77,6 +94,7 @@ public class UIManager : MonoBehaviour
         CanMove = true;
         StartTimer = false;
         m_Timer.text = null;
+        m_players = PhotonNetwork.CurrentRoom.PlayerCount;
     }
 
     [PunRPC]
@@ -97,5 +115,23 @@ public class UIManager : MonoBehaviour
         m_timer -= Time.deltaTime;
         int time = (int)m_timer;
         m_Timer.text = "Game Starts in " + time.ToString();
+    }
+
+    [PunRPC]
+    void UpdateDeaths()
+    {
+        m_deathplayers++;
+    }
+
+    [PunRPC]
+    void EndGame()
+    {
+        Endgame = true;
+    }
+
+    [PunRPC]
+    void ShowWinner(string nickname)
+    {
+        m_winnertext.text = nickname + "\n WON";
     }
 }
