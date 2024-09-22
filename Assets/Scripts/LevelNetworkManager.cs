@@ -41,7 +41,7 @@ public class LevelNetworkManager : MonoBehaviourPunCallbacks
         UIManager.Instance.addPrivateText(newplayer.NickName + " entered the room");
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            UIManager.Instance.StartTimer = true;
+            UIManager.Instance.NextState();
         }
     }
 

@@ -4,22 +4,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameStates
+{
+    Waiting,
+    Timer,
+    Playing,
+    Ending,
+}
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
+
+    public GameStates State;
 
     [SerializeField] 
     TextMeshProUGUI m_Timer, m_chat, m_winnertext; 
     float m_timer = 3;
     [SerializeField]
-    bool startTimer, canMove, m_endgame;
-    [SerializeField]
     int m_players, m_deathplayers;
     PhotonView m_pv;
-
-    public bool CanMove { get => canMove; set => canMove = value; }
-    public bool StartTimer { get => startTimer; set => startTimer = value; }
-    public bool Endgame { get => m_endgame; set => m_endgame = value; }
 
     private void Awake()
     {
@@ -40,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (StartTimer)
+        if (State == GameStates.Timer)
         {
             if (m_timer > 0)
             {
@@ -55,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void leaveCurrentRoomFromEditor()
     {
-        CanMove = false;
+        State = GameStates.Waiting;
         LevelNetworkManager.Instance.disconnectFromCurrentRoom();
     }
 
@@ -73,15 +76,23 @@ public class UIManager : MonoBehaviour
     public void PlayerDied()
     {
         m_pv.RPC("UpdateDeaths", RpcTarget.All);
-        if (m_deathplayers == m_players-1)
+        Debug.Log("murio");
+        if (m_deathplayers == (m_players-1))
         {
-            m_pv.RPC("EndGame", RpcTarget.All);
+            NextState();
         }
     }
 
     public void Winner(string nickname)
     {
+        Debug.Log("alguien gano");
         m_pv.RPC("ShowWinner", RpcTarget.All, nickname);
+    }
+
+    public void NextState()
+    {
+        State++;
+        Debug.Log(State);
     }
 
     [PunRPC]
@@ -91,9 +102,8 @@ public class UIManager : MonoBehaviour
         {
             PhotonNetwork.Instantiate("TowerSpawner", transform.position, Quaternion.identity);
         }
-        CanMove = true;
-        StartTimer = false;
         m_Timer.text = null;
+        NextState();
         m_players = PhotonNetwork.CurrentRoom.PlayerCount;
     }
 
@@ -124,14 +134,9 @@ public class UIManager : MonoBehaviour
     }
 
     [PunRPC]
-    void EndGame()
-    {
-        Endgame = true;
-    }
-
-    [PunRPC]
     void ShowWinner(string nickname)
     {
         m_winnertext.text = nickname + "\n WON";
     }
+
 }

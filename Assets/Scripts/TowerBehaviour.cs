@@ -22,9 +22,13 @@ public class TowerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (UIManager.Instance.CanMove)
+        if (UIManager.Instance.State == GameStates.Playing)
         {
             m_rb2D.velocity = Vector3.down * m_fallingspeed;
+        }
+        else
+        {
+            m_rb2D.velocity = Vector3.zero;
         }
 
         if (transform.position.y < -20)

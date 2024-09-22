@@ -30,7 +30,7 @@ public class PlayerControl: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && m_suelo && m_pv.IsMine && UIManager.Instance.CanMove && !m_death)
+        if (Input.GetKeyDown(KeyCode.Space) && m_suelo && m_pv.IsMine && UIManager.Instance.State == GameStates.Playing && !m_death)
         {
             m_rb2D.AddForce(Vector3.up * m_force, ForceMode2D.Impulse);
         }
@@ -45,21 +45,22 @@ public class PlayerControl: MonoBehaviour
             m_myanim.SetBool("Death", m_death);
             if (!m_death)
             {
-                if (UIManager.Instance.CanMove && !m_death)
+                if (UIManager.Instance.State == GameStates.Playing)
                 {
                     m_hor = Input.GetAxisRaw("Horizontal");
                     m_rb2D.velocity = new Vector2(m_hor * m_speed, m_rb2D.velocity.y);
+                    if (m_hor < 0)
+                    {
+                        m_spriteRenderer.flipX = true;
+                    }
+                    else if (m_hor > 0)
+                    {
+                        m_spriteRenderer.flipX = false;
+                    }
                 }
-                if (m_hor < 0)
+                if (UIManager.Instance.State == GameStates.Ending)
                 {
-                    m_spriteRenderer.flipX = true;
-                }
-                else if (m_hor > 0)
-                {
-                    m_spriteRenderer.flipX = false;
-                }
-                if (UIManager.Instance.Endgame)
-                {
+                    Debug.Log("gano");
                     UIManager.Instance.Winner(m_pv.Owner.NickName);
                 }
             }
