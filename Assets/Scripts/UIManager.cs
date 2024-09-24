@@ -6,10 +6,10 @@ using UnityEngine;
 
 public enum GameStates
 {
-    Waiting,
+    None,
     Timer,
     Playing,
-    Ending,
+    Ending
 }
 public class UIManager : MonoBehaviour
 {
@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
     {
         if (State == GameStates.Timer)
         {
+            Debug.Log("en Timer");
             if (m_timer > 0)
             {
                 m_pv.RPC("Timer", RpcTarget.All);
@@ -52,13 +53,14 @@ public class UIManager : MonoBehaviour
             else if (m_timer < 0)
             {
                 m_pv.RPC("SetUp", RpcTarget.AllBuffered);
+                NextState();
             }
         }
     }
 
     public void leaveCurrentRoomFromEditor()
     {
-        State = GameStates.Waiting;
+        State = GameStates.None;
         LevelNetworkManager.Instance.disconnectFromCurrentRoom();
     }
 
@@ -76,11 +78,6 @@ public class UIManager : MonoBehaviour
     public void PlayerDied()
     {
         m_pv.RPC("UpdateDeaths", RpcTarget.All);
-        Debug.Log("murio");
-        if (m_deathplayers == (m_players-1))
-        {
-            NextState();
-        }
     }
 
     public void Winner(string nickname)
@@ -103,7 +100,6 @@ public class UIManager : MonoBehaviour
             PhotonNetwork.Instantiate("TowerSpawner", transform.position, Quaternion.identity);
         }
         m_Timer.text = null;
-        NextState();
         m_players = PhotonNetwork.CurrentRoom.PlayerCount;
     }
 
@@ -131,12 +127,18 @@ public class UIManager : MonoBehaviour
     void UpdateDeaths()
     {
         m_deathplayers++;
+        if (m_deathplayers == (m_players - 1))
+        {
+            Debug.Log("entro");
+            NextState();
+        }
     }
 
     [PunRPC]
     void ShowWinner(string nickname)
     {
         m_winnertext.text = nickname + "\n WON";
+        State = GameStates.None;
+        SpawnSecment.Instance.CancelInvoke();
     }
-
 }

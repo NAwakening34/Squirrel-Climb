@@ -6396,7 +6396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1569564340, guid: da62ad2e9cb239741a7403c8c0402960, type: 3}
+  m_Sprite: {fileID: -863122197, guid: da62ad2e9cb239741a7403c8c0402960, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8082,12 +8082,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2aa320b5fb5d14186434eabcbd7ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  State: 0
   m_Timer: {fileID: 2000351085}
   m_chat: {fileID: 443140409}
   m_winnertext: {fileID: 1725632108}
-  startTimer: 0
-  canMove: 0
-  m_endgame: 0
   m_players: 0
   m_deathplayers: 0
 --- !u!4 &1280028252
@@ -9322,7 +9320,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 8.92
 --- !u!222 &1474409885
 CanvasRenderer:
   m_ObjectHideFlags: 0
