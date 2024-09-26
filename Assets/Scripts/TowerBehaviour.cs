@@ -24,7 +24,7 @@ public class TowerBehaviour : MonoBehaviour
     {
         if (UIManager.Instance.State == GameStates.Playing)
         {
-            m_rb2D.velocity = Vector3.down * m_fallingspeed;
+            //m_rb2D.velocity = Vector3.down * m_fallingspeed;
         }
         else
         {

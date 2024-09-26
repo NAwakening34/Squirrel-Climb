@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - DeathZone
+  - Hit
   layers:
   - Default
   - TransparentFX

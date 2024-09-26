@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
     public void addText(string message)
     {
         m_pv.RPC("UpdateChat", RpcTarget.All,  message);
+        Debug.Log(message);
     }
 
     public void addPrivateText(string message)
@@ -88,8 +89,14 @@ public class UIManager : MonoBehaviour
 
     public void NextState()
     {
-        State++;
+        m_pv.RPC("ChangeState", RpcTarget.AllBuffered);
         Debug.Log(State);
+    }
+
+    [PunRPC]
+    void ChangeState()
+    {
+        State++;
     }
 
     [PunRPC]
@@ -129,7 +136,6 @@ public class UIManager : MonoBehaviour
         m_deathplayers++;
         if (m_deathplayers == (m_players - 1))
         {
-            Debug.Log("entro");
             NextState();
         }
     }
